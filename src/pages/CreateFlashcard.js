@@ -1,9 +1,10 @@
 import { useState } from "react";
-import MdEditor from "../../components/MdEditor";
-import TagSelector from "../../components/TagSelector";
+import Navbar from "../components/Navbar";
+import MdEditor from "../components/MdEditor";
+import TagSelector from "../components/TagSelector";
 import { CheckOutlined } from "@ant-design/icons";
 
-import { Layout, Typography, Steps, Button } from "antd";
+import { Layout, Typography, Steps, Button, Input } from "antd";
 const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
 const { Step } = Steps;
@@ -49,20 +50,27 @@ const CreateFlashcard = () => {
   const [hintText, setHintText] = useState("");
   const [answerText, setAnswerText] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
+  const [title, setTitle] = useState("");
+  const [tag, setTag] = useState(null);
 
   return (
     <Layout style={{ height: "100vh", background: "#fff" }}>
-      <Content className="px-6">
+      <Content className="px-6" style={{ marginTop: "64px" }}>
         <div className="m-4 py-2">
           <StepsBar currentStep={currentStep} setCurrentStep={setCurrentStep} />
         </div>
 
         <div className="m-4 py-2" style={{ display: "flex" }}>
-          <Title level={3} className="pb-2 pr-4">
-            Tag
-          </Title>
-          <div style={{ flex: 1 }}>
-            <TagSelector />
+          <div style={{ flex: 1 }} className="mr-5">
+            <Input
+              placeholder="Title"
+              size="large"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div style={{ width: "20%" }}>
+            <TagSelector tag={tag} setTag={setTag} />
           </div>
         </div>
 

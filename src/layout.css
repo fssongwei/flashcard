@@ -1,3 +1,7 @@
+.m-0 {
+  margin: 0px !important;
+}
+
 .m-1 {
   margin: 4px !important;
 }
@@ -20,6 +24,10 @@
 
 .m-6 {
   margin: 96px !important;
+}
+
+.ml-0 {
+  margin-left: 0px !important;
 }
 
 .ml-1 {
@@ -46,6 +54,10 @@
   margin-left: 96px !important;
 }
 
+.mr-0 {
+  margin-right: 0px !important;
+}
+
 .mr-1 {
   margin-right: 4px !important;
 }
@@ -68,6 +80,10 @@
 
 .mr-6 {
   margin-right: 96px !important;
+}
+
+.mt-0 {
+  margin-top: 0px !important;
 }
 
 .mt-1 {
@@ -94,6 +110,10 @@
   margin-top: 96px !important;
 }
 
+.mb-0 {
+  margin-bottom: 0px !important;
+}
+
 .mb-1 {
   margin-bottom: 4px !important;
 }
@@ -116,6 +136,11 @@
 
 .mb-6 {
   margin-bottom: 96px !important;
+}
+
+.mx-0 {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
 }
 
 .mx-1 {
@@ -148,6 +173,11 @@
   margin-left: 96px !important;
 }
 
+.my-0 {
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+}
+
 .my-1 {
   margin-bottom: 4px !important;
   margin-top: 4px !important;
@@ -178,6 +208,10 @@
   margin-top: 96px !important;
 }
 
+.p-0 {
+  padding: 0px !important;
+}
+
 .p-1 {
   padding: 4px !important;
 }
@@ -200,6 +234,10 @@
 
 .p-6 {
   padding: 96px !important;
+}
+
+.pl-0 {
+  padding-left: 0px !important;
 }
 
 .pl-1 {
@@ -226,6 +264,10 @@
   padding-left: 96px !important;
 }
 
+.pr-0 {
+  padding-right: 0px !important;
+}
+
 .pr-1 {
   padding-right: 4px !important;
 }
@@ -248,6 +290,10 @@
 
 .pr-6 {
   padding-right: 96px !important;
+}
+
+.pt-0 {
+  padding-top: 0px !important;
 }
 
 .pt-1 {
@@ -274,6 +320,10 @@
   padding-top: 96px !important;
 }
 
+.pb-0 {
+  padding-bottom: 0px !important;
+}
+
 .pb-1 {
   padding-bottom: 4px !important;
 }
@@ -296,6 +346,11 @@
 
 .pb-6 {
   padding-bottom: 96px !important;
+}
+
+.px-0 {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
 }
 
 .px-1 {
@@ -326,6 +381,11 @@
 .px-6 {
   padding-right: 96px !important;
   padding-left: 96px !important;
+}
+
+.py-0 {
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
 }
 
 .py-1 {

@@ -3,12 +3,11 @@ import { TreeSelect } from "antd";
 
 const { TreeNode } = TreeSelect;
 
-const TagSelector = () => {
-  const [value, setValue] = useState(undefined);
+const TagSelector = ({ tag, setTag }) => {
+  //   const [value, setValue] = useState(value);
 
   const onChange = (value) => {
-    console.log(value);
-    setValue(value);
+    setTag(value);
   };
 
   let obj = {
@@ -44,9 +43,9 @@ const TagSelector = () => {
     <TreeSelect
       showSearch
       style={{ width: "100%" }}
-      value={value}
+      value={tag}
       dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
-      placeholder="Please select"
+      placeholder="Tag"
       allowClear
       treeDefaultExpandAll
       onChange={onChange}
