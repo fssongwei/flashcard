@@ -1,36 +1,64 @@
-import { Layout, Menu, Button } from "antd";
+import { Layout, Menu, Button, Dropdown } from "antd";
+import { LogoutOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-
+import { Avatar } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 const { Header } = Layout;
 
-const Navbar = () => {
+const userMenu = (user) => {
   return (
-    <Header
-      style={{
-        backgroundColor: "#fff",
-        position: "fixed",
-        width: "100%",
-        zIndex: "1",
-      }}
-      className="p-0"
-    >
-      <Menu mode="horizontal" className="px-6" selectable={false}>
-        <Link to="/">
-          <Button
-            type="primary"
-            style={{ borderRadius: "4px", fontFamily: "monospace" }}
-          >
-            Flashcard
-          </Button>
-        </Link>
-        {/* <Menu.Item key="1">nav 1</Menu.Item>
-        <Menu.Item key="2">nav 2</Menu.Item> */}
+    <Menu>
+      <Menu.ItemGroup style={{ color: "#000" }}>
+        Welcome, {user.name}
+      </Menu.ItemGroup>
+      <Menu.Divider />
+      <Menu.Item>
+        <a href="/auth/logout">
+          <LogoutOutlined /> Logout
+        </a>
+      </Menu.Item>
+    </Menu>
+  );
+};
 
-        <Menu.Item style={{ float: "right" }}>
-          <Link to="/add">add</Link>
-        </Menu.Item>
-      </Menu>
-    </Header>
+const Navbar = () => {
+  const user = useSelector((state) => state.user);
+
+  return (
+    <>
+      <Header
+        style={{
+          backgroundColor: "#fff",
+          position: "fixed",
+          width: "100%",
+          zIndex: "1",
+          padding: 0,
+        }}
+      >
+        <Menu
+          mode="horizontal"
+          selectable={false}
+          style={{ padding: "0 100px" }}
+        >
+          <Link to="/">
+            <Button
+              type="primary"
+              style={{ borderRadius: "4px", fontFamily: "monospace" }}
+            >
+              Flashcard
+            </Button>
+          </Link>
+
+          <Menu.Item style={{ float: "right" }}>
+            <Dropdown overlay={userMenu(user)} trigger="click">
+              <Avatar size="large" src={user.avatar} />
+            </Dropdown>
+            {/* <Link to="/add">add</Link> */}
+          </Menu.Item>
+        </Menu>
+      </Header>
+      <div style={{ paddingTop: "64px" }}></div>
+    </>
   );
 };
 
