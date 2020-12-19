@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Flashcard</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/modal-video/css/modal-video.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header">
+      <div class="container d-flex align-items-center justify-content-between">
+        <div id="logo">
+          <h1>
+            <a href="index.html"><span>F</span>lashcard</a>
+          </h1>
+        </div>
+
+        <!-- #nav-menu-container -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+      <div class="hero-container" data-aos="fade-in">
+        <h1>Welcome to Flashcard</h1>
+        <h2>Master any subject, one success at a time..</h2>
+        <img
+          src="assets/img/hero-img.png"
+          alt="Hero Imgs"
+          data-aos="zoom-out"
+          data-aos-delay="100"
+        />
+        <a href="/" class="btn-get-started scrollto" id="getStart"
+          >Get Started</a
+        >
+      </div>
+    </section>
+    <!-- End Hero Section -->
+
+    <!-- ======= Footer ======= -->
+    <div style="position: fixed; bottom: 0; width: 100%">
+      <p style="text-align: center">
+        &copy; 2020 Wei Song. All rights reserved.
+      </p>
+    </div>
+    <!-- End  Footer -->
+
+    <script>
+      let currenthost = window.location.host;
+      let redirectUrl = "";
+      if (currenthost.indexOf("localhost") >= 0) {
+        redirectUrl = "http://localhost:4000/?origin=http://" + currenthost;
+      } else {
+        redirectUrl = "https://auth.wei.ai/?origin=https://" + currenthost;
+      }
+      document.getElementById("getStart").setAttribute("href", redirectUrl);
+    </script>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/modal-video/js/modal-video.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/superfish/superfish.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
