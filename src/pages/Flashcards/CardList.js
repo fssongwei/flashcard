@@ -132,7 +132,12 @@ const CardList = ({ category }) => {
           } else {
             return (
               <List.Item>
-                <Link to={`/flashcard/${flashcard._id}`}>
+                <Link
+                  to={{
+                    pathname: `/flashcard/${flashcard._id}`,
+                    cardList: selectedFlashcards.map((card) => card._id),
+                  }}
+                >
                   <Card hoverable>
                     <Card.Meta
                       title={flashcard.title}

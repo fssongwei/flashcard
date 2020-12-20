@@ -14,8 +14,6 @@ const getColor = (text) => {
     value += c.charCodeAt();
   }
   value %= colors.length;
-  console.log(value);
-
   return colors[value];
 };
 

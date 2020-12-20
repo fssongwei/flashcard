@@ -15,7 +15,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(user);
     if (user) dispatch(fetchFlashcards());
   }, [user]);
 
