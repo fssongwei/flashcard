@@ -16,6 +16,7 @@ import MarkdownIt from "markdown-it";
 import { LeftOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { deleteFlashcard } from "../../actions";
+import "./style.css";
 
 const { Title } = Typography;
 const { Content } = Layout;
@@ -89,27 +90,34 @@ const Flashcard = () => {
 
       <div className="pb-5">
         <Collapse defaultActiveKey={["question"]}>
-          <Panel header="Question" key="question">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: mdParser.render(flashcard.question),
-              }}
-            />
-          </Panel>
-          <Panel header="Hint" key="2">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: mdParser.render(flashcard.hint),
-              }}
-            />
-          </Panel>
-          <Panel header="Answer" key="3">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: mdParser.render(flashcard.answer),
-              }}
-            />
-          </Panel>
+          {flashcard.question !== "" && (
+            <Panel header="Question" key="question">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: mdParser.render(flashcard.question),
+                }}
+              />
+            </Panel>
+          )}
+          {flashcard.hint !== "" && (
+            <Panel header="Hint" key="2">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: mdParser.render(flashcard.hint),
+                }}
+              />
+            </Panel>
+          )}
+          {flashcard.answer !== "" && (
+            <Panel header="Answer" key="3">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: mdParser.render(flashcard.answer),
+                }}
+                id="flashcard-content"
+              />
+            </Panel>
+          )}
         </Collapse>
       </div>
     </Content>

@@ -90,7 +90,11 @@ const CardList = ({ category }) => {
       </div>
 
       <List
-        grid={viewMode === "list" ? "" : { column: 3 }}
+        grid={
+          viewMode === "list"
+            ? ""
+            : { gutter: 16, xs: 1, sm: 1, md: 1, lg: 2, xl: 3, xxl: 3 }
+        }
         itemLayout="horizontal"
         dataSource={selectedFlashcards}
         renderItem={(flashcard) => {
@@ -115,7 +119,7 @@ const CardList = ({ category }) => {
             return (
               <List.Item>
                 <Link to={`/flashcard/${flashcard._id}`}>
-                  <Card className="m-2" hoverable>
+                  <Card hoverable>
                     <Card.Meta
                       title={flashcard.title}
                       description={flashcard.question || "(no description)"}
