@@ -10,9 +10,9 @@ const Flashcards = () => {
 
   return (
     <Layout style={{ background: "#fff" }} className="flex-grow-1">
-      <Sider width={256}>
-        <Sidebar currentCategory={category} />
-      </Sider>
+      {/* <Sider width={256}> */}
+      <Sidebar currentCategory={category} />
+      {/* </Sider> */}
       <CardList category={category} />
     </Layout>
   );

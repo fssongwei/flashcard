@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Menu, Button } from "antd";
+import { Menu, Button, Layout } from "antd";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AppstoreAddOutlined, RocketOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
+const { Sider } = Layout;
 
 const Sidebar = ({ currentCategory }) => {
   let categories = useSelector((state) => state.categories);
@@ -17,42 +18,56 @@ const Sidebar = ({ currentCategory }) => {
   };
 
   return (
-    <Menu
-      mode="inline"
-      style={{ width: "100%", height: "100%", paddingTop: "50px" }}
-      className="pt-6"
-      selectedKeys={[currentCategory]}
+    <Sider
+      breakpoint="lg"
+      collapsedWidth="0"
+      style={{ backgroundColor: "#000" }}
+      zeroWidthTriggerStyle={{
+        backgroundColor: "#1890ff",
+        color: "#fff",
+        position: "fixed",
+        left: "0",
+        top: "66px",
+      }}
+      width="256"
     >
-      <Menu.Item key="Dashboard">
-        <Link to="/">All</Link>
-      </Menu.Item>
-      {categories.map((category) => {
-        return (
-          <Menu.Item key={category}>
-            <Link to={`/categories/${category}`}>
-              {decodeURIComponent(category)}
-            </Link>
-          </Menu.Item>
-        );
-      })}
-      <div className="p-3">
-        <Link to="/add">
-          <Button icon={<AppstoreAddOutlined />} block>
-            Create A Flashcard
-          </Button>
-        </Link>
+      <Menu
+        mode="inline"
+        style={{ width: "100%", height: "100%", paddingTop: "50px" }}
+        className="pt-6"
+        selectedKeys={[currentCategory]}
+      >
+        <Menu.Item key="Dashboard">
+          <Link to="/">All</Link>
+        </Menu.Item>
+        {categories.map((category) => {
+          return (
+            <Menu.Item key={category}>
+              <Link to={`/categories/${category}`}>
+                {decodeURIComponent(category)}
+              </Link>
+            </Menu.Item>
+          );
+        })}
+        <div className="p-3">
+          <Link to="/add">
+            <Button icon={<AppstoreAddOutlined />} block>
+              Create A Flashcard
+            </Button>
+          </Link>
 
-        <Button
-          type="primary"
-          className="mt-3"
-          icon={<RocketOutlined />}
-          block
-          onClick={randomOne}
-        >
-          Flashcard Shuffle
-        </Button>
-      </div>
-    </Menu>
+          <Button
+            type="primary"
+            className="mt-3"
+            icon={<RocketOutlined />}
+            block
+            onClick={randomOne}
+          >
+            Flashcard Shuffle
+          </Button>
+        </div>
+      </Menu>
+    </Sider>
   );
 };
 

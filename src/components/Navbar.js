@@ -38,7 +38,8 @@ const Navbar = () => {
         <Menu
           mode="horizontal"
           selectable={false}
-          style={{ padding: "0 100px" }}
+          // style={{ padding: "0 100px" }}
+          className="px-4 px-md-5 mx-md-5"
         >
           <Link to="/">
             <Button

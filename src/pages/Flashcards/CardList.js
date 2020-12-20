@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { List, Layout, Select, Tag, Card, Radio } from "antd";
 import getColor from "../../utilities/getColor";
 import { Link } from "react-router-dom";
+import { UnorderedListOutlined, AppstoreOutlined } from "@ant-design/icons";
+
 const { Content } = Layout;
 const { Option } = Select;
 
@@ -68,17 +70,29 @@ const CardList = ({ category }) => {
   }
 
   return (
-    <Content style={{ padding: "50px 100px" }}>
+    <Content
+      //style={{ padding: "50px 100px" }}
+      className="p-md-5 mx-md-5 mt-md-2 p-4 mt-5"
+    >
       <div className="d-flex justify-content-between">
         <h1>{category || "All Cards"}</h1>
 
         <Radio.Group
-          options={["list", "card"]}
+          // options={["list", "card"]}
           onChange={(e) => setViewMode(e.target.value)}
           value={viewMode}
           optionType="button"
           buttonStyle="solid"
-        />
+        >
+          <Radio.Button value="list">
+            <UnorderedListOutlined />
+          </Radio.Button>
+          .
+          <Radio.Button value="card">
+            <AppstoreOutlined />
+          </Radio.Button>
+          .
+        </Radio.Group>
       </div>
 
       <div className="py-4">
