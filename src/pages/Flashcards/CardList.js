@@ -117,7 +117,12 @@ const CardList = ({ category }) => {
               <List.Item>
                 <List.Item.Meta
                   title={
-                    <Link to={`/flashcard/${flashcard._id}`}>
+                    <Link
+                      to={{
+                        pathname: `/flashcard/${flashcard._id}`,
+                        cardList: selectedFlashcards.map((card) => card._id),
+                      }}
+                    >
                       {flashcard.title}
                     </Link>
                   }
@@ -125,7 +130,11 @@ const CardList = ({ category }) => {
                 />
 
                 {flashcard.tags.map((tag) => {
-                  return <Tag color={getColor(tag)}>{tag}</Tag>;
+                  return (
+                    <Tag color={getColor(tag)} key={tag}>
+                      {tag}
+                    </Tag>
+                  );
                 })}
               </List.Item>
             );
@@ -146,7 +155,11 @@ const CardList = ({ category }) => {
 
                     <div className="pt-3">
                       {flashcard.tags.map((tag) => {
-                        return <Tag color={getColor(tag)}>{tag}</Tag>;
+                        return (
+                          <Tag color={getColor(tag)} key={tag}>
+                            {tag}
+                          </Tag>
+                        );
                       })}
                     </div>
                   </Card>

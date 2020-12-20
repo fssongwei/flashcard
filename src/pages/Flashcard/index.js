@@ -95,7 +95,11 @@ const Flashcard = (props) => {
         <Title level={3}>{flashcard.title}</Title>
         <div className="pb-5">
           {flashcard.tags.map((tag) => {
-            return <Tag color={getColor(tag)}>{tag}</Tag>;
+            return (
+              <Tag color={getColor(tag)} key={tag}>
+                {tag}
+              </Tag>
+            );
           })}
         </div>
 
