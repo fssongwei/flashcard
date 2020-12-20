@@ -53,11 +53,14 @@ const Flashcard = () => {
   return (
     <Content style={{ width: "90%", maxWidth: "800px", margin: "50px auto" }}>
       <div className="pb-4 d-flex justify-content-between">
-        <Button
-          shape="circle"
-          icon={<LeftOutlined />}
-          onClick={() => history.goBack()}
-        />
+        <div className="d-flex ">
+          <Button
+            shape="circle"
+            icon={<LeftOutlined />}
+            onClick={() => history.goBack()}
+          />
+          <h2 className="ps-2">{flashcard.category}</h2>
+        </div>
         <div>
           <Link to={`/edit/${id}`}>
             <Button
