@@ -12,10 +12,12 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUser());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (user) dispatch(fetchFlashcards());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   if (user === null) {

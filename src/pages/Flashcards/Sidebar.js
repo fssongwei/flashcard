@@ -43,8 +43,8 @@ const Sidebar = ({ currentCategory }) => {
         {categories.map((category) => {
           return (
             <Menu.Item key={category}>
-              <Link to={`/categories/${category}`}>
-                {decodeURIComponent(category)}
+              <Link to={`/categories/${encodeURIComponent(category)}`}>
+                {category}
               </Link>
             </Menu.Item>
           );

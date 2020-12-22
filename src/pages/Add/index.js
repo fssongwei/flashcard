@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { CheckOutlined } from "@ant-design/icons";
 
-import { Layout, Button, message } from "antd";
+import { Layout, Button, Form, message } from "antd";
 import StepsBar from "./StepsBar";
 import StepsContent from "./StepsContent";
 import InfoInputBox from "./InfoInputBox";
@@ -14,111 +14,81 @@ const { Content } = Layout;
 
 const AddPage = () => {
   const { id } = useParams();
-
-  const [questionText, setQuestionText] = useState("");
-  const [hintText, setHintText] = useState("");
-  const [answerText, setAnswerText] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
-  const [title, setTitle] = useState("");
-  const [tags, setTags] = useState([]);
-  const [category, setCategory] = useState(null);
-  let history = useHistory();
+  const [initValues, setInitValues] = useState(null);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [form] = Form.useForm();
 
   useEffect(() => {
     const fetchFlashcard = async () => {
       try {
         let flashcard = (await axios.get(`/api/flashcards/${id}`)).data;
-        setQuestionText(flashcard.question);
-        setHintText(flashcard.hint);
-        setAnswerText(flashcard.answer);
-        setTitle(flashcard.title);
-        setTags(flashcard.tags);
-        setCategory(flashcard.category);
+        setInitValues(flashcard);
       } catch (error) {
-        message.error("Something went wrong!");
+        message.error("Something went wrong! " + error.toString());
         history.push("/");
       }
     };
-
     if (id) fetchFlashcard();
+    else
+      setInitValues({
+        title: "",
+        category: "",
+        tags: [],
+        question: "",
+        hint: "",
+        answer: "",
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const dispatch = useDispatch();
-  const onSubmit = (newOrUpdate) => {
-    let flashcard = {
-      title: title,
-      category: category,
-      tags: tags,
-      question: questionText,
-      hint: hintText,
-      answer: answerText,
-    };
-    if (newOrUpdate === "new") dispatch(createFlashcard(flashcard, history));
-    if (newOrUpdate === "update")
-      dispatch(updateFlashcard(flashcard, id, history));
+  const onFinish = (values) => {
+    if (!id) dispatch(createFlashcard(values, history));
+    else dispatch(updateFlashcard(values, id, history));
   };
 
+  if (!initValues) return <div>loading</div>;
+
   return (
-    <Layout style={{ height: "100vh", background: "#fff" }}>
-      <Content style={{ padding: "0 100px" }}>
-        <div className="py-4">
-          <StepsBar
-            className="py-4"
-            currentStep={currentStep}
-            setCurrentStep={setCurrentStep}
-          />
-        </div>
+    <Form
+      form={form}
+      name="addCard"
+      onFinish={onFinish}
+      style={{ height: "100%" }}
+      initialValues={initValues}
+    >
+      <Layout style={{ height: "100%", background: "#fff" }}>
+        <Content style={{ padding: "0 100px" }} className="d-flex flex-column">
+          <div className="py-4">
+            <StepsBar
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+            />
+          </div>
 
-        <div className="py-4">
-          <InfoInputBox
-            title={title}
-            setTitle={setTitle}
-            tags={tags}
-            setTags={setTags}
-            category={category}
-            setCategory={setCategory}
-          />
-        </div>
+          <div className="my-4">
+            <InfoInputBox />
+          </div>
 
-        <div className="py-4">
-          <StepsContent
-            currentStep={currentStep}
-            questionText={questionText}
-            setQuestionText={setQuestionText}
-            hintText={hintText}
-            setHintText={setHintText}
-            answerText={answerText}
-            setAnswerText={setAnswerText}
-          />
-        </div>
+          <div className="flex-grow-1">
+            <StepsContent currentStep={currentStep} />
+          </div>
 
-        <div className="py-4">
-          {!id && (
+          <div className="my-4">
             <Button
               type="primary"
               shape="round"
               icon={<CheckOutlined />}
               size="large"
-              onClick={() => onSubmit("new")}
+              htmlType="submit"
             >
-              Done
+              {id ? "Update" : "Submit"}
             </Button>
-          )}
-
-          {id && (
-            <Button
-              type="primary"
-              shape="round"
-              icon={<CheckOutlined />}
-              size="large"
-              onClick={() => onSubmit("update")}
-            >
-              Update
-            </Button>
-          )}
-        </div>
-      </Content>
-    </Layout>
+          </div>
+        </Content>
+      </Layout>
+    </Form>
   );
 };
 

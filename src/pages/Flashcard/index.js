@@ -96,7 +96,7 @@ const Flashcard = (props) => {
         <div className="pb-5">
           {flashcard.tags.map((tag) => {
             return (
-              <Tag color={getColor(tag)} key={tag}>
+              <Tag color={getColor(tag)} key={tag} className="my-1">
                 {tag}
               </Tag>
             );

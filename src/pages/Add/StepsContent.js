@@ -1,64 +1,48 @@
+import { useState, useCallback } from "react";
 import MdEditor from "./MdEditor";
-import { Typography } from "antd";
-const { Title } = Typography;
+import { Form } from "antd";
 
-const ConfiguredEditor = ({ title, placeholder, value, setValue }) => {
+const StepsContent = ({ currentStep }) => {
+  const [editorHeight, setEditorHeight] = useState("100px");
+  const editorContainerRef = useCallback((node) => {
+    if (node !== null) {
+      setEditorHeight(node.getBoundingClientRect().height);
+    }
+  }, []);
+
   return (
-    <>
-      <Title level={3} className="pb-2">
-        {title}
-      </Title>
-      <MdEditor
-        value={value}
-        setValue={setValue}
-        placeholder={placeholder}
-        height="60vh"
-      />
-    </>
+    <div style={{ height: "100%" }} ref={editorContainerRef}>
+      <div style={{ display: currentStep === 0 ? "" : "none" }}>
+        <Form.Item name="question" className="m-0">
+          <MdEditor
+            title="Question"
+            placeholder="Enter Your Questions"
+            editorHeight={editorHeight}
+          />
+        </Form.Item>
+      </div>
+
+      <div style={{ display: currentStep === 1 ? "" : "none" }}>
+        <Form.Item name="hint" className="m-0">
+          <MdEditor
+            title="Hint"
+            placeholder="Enter Hints"
+            editorHeight={editorHeight}
+          />
+        </Form.Item>
+      </div>
+
+      <div style={{ display: currentStep === 2 ? "" : "none" }}>
+        <Form.Item name="answer" className="m-0">
+          <MdEditor
+            title="Answer"
+            placeholder="Enter Your Answer"
+            editorHeight={editorHeight}
+          />
+        </Form.Item>
+      </div>
+    </div>
   );
-};
-
-const StepsContent = ({
-  currentStep,
-  questionText,
-  setQuestionText,
-  hintText,
-  setHintText,
-  answerText,
-  setAnswerText,
-}) => {
-  if (currentStep === 0) {
-    return (
-      <ConfiguredEditor
-        title="Question"
-        placeholder="Enter Your Questions"
-        value={questionText}
-        setValue={setQuestionText}
-      />
-    );
-  }
-
-  if (currentStep === 1) {
-    return (
-      <ConfiguredEditor
-        title="Hint"
-        placeholder="Enter Hints"
-        value={hintText}
-        setValue={setHintText}
-      />
-    );
-  }
-
-  if (currentStep === 2) {
-    return (
-      <ConfiguredEditor
-        title="Answer"
-        placeholder="Enter Your Answer"
-        value={answerText}
-        setValue={setAnswerText}
-      />
-    );
-  }
 };
 
 export default StepsContent;

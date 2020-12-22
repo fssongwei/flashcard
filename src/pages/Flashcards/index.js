@@ -1,19 +1,16 @@
-import { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import { Layout } from "antd";
 import { useParams } from "react-router-dom";
 import CardList from "./CardList";
-const { Sider } = Layout;
 
 const Flashcards = () => {
   const { category } = useParams();
+  const decodedCategory = category ? decodeURIComponent(category) : category;
 
   return (
     <Layout style={{ background: "#fff" }} className="flex-grow-1">
-      {/* <Sider width={256}> */}
-      <Sidebar currentCategory={category} />
-      {/* </Sider> */}
-      <CardList category={category} />
+      <Sidebar currentCategory={decodedCategory} />
+      <CardList category={decodedCategory} />
     </Layout>
   );
 };

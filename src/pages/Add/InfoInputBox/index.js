@@ -1,31 +1,24 @@
 import CategorySelector from "./CategorySelector";
 import TagSelector from "./TagSelector";
-import { Input } from "antd";
+import { Form, Input } from "antd";
 
-const InfoInputBox = ({
-  title,
-  setTitle,
-  tags,
-  setTags,
-  category,
-  setCategory,
-}) => {
+const InfoInputBox = () => {
   return (
     <>
-      <div className="d-flex mb-3">
+      <div className="d-flex">
         <div className="flex-grow-1 me-3">
-          <Input
-            placeholder="Title"
-            size="large"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <Form.Item
+            rules={[{ required: true, message: "required" }]}
+            name="title"
+          >
+            <Input placeholder="Title" size="large" />
+          </Form.Item>
         </div>
         <div style={{ width: "20%" }}>
-          <CategorySelector category={category} setCategory={setCategory} />
+          <CategorySelector />
         </div>
       </div>
-      <TagSelector tags={tags} setTags={setTags} />
+      <TagSelector />
     </>
   );
 };
