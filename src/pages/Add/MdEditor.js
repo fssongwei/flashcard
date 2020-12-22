@@ -13,11 +13,11 @@ function handleEditorChange(html, text, onChange) {
 
 const Editor = ({ title, placeholder, value, onChange, editorHeight }) => {
   return (
-    <div style={{ height: editorHeight }} className="d-flex flex-column">
+    <div className="d-flex flex-column">
       <Title level={3}>{title}</Title>
-      <div className="flex-grow-1">
+      <div className="flex-grow-1 editor">
         <MdEditor
-          style={{ height: "100%" }}
+          style={{ height: "50vh" }}
           renderHTML={(text) => mdParser.render(text)}
           onChange={({ html, text }) =>
             handleEditorChange(html, text, onChange)
