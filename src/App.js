@@ -9,6 +9,7 @@ import { fetchUser, fetchFlashcards } from "./actions";
 
 function App() {
   const user = useSelector((state) => state.user);
+  const flashcards = useSelector((state) => state.flashcards);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUser());
@@ -26,6 +27,10 @@ function App() {
 
   if (user === false) {
     window.location.replace("/welcome");
+  }
+
+  if (flashcards === null) {
+    return <div>loading</div>;
   }
 
   return (

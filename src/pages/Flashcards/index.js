@@ -1,4 +1,4 @@
-import Sidebar from "./Sidebar";
+import Sidebar from "./Sidebar/Sidebar";
 import { Layout } from "antd";
 import { useParams } from "react-router-dom";
 import CardList from "./CardList";

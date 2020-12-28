@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AppstoreAddOutlined, RocketOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
+import Filter from "./Filter";
+
 const { Sider } = Layout;
 
 const Sidebar = ({ currentCategory }) => {
@@ -56,15 +58,9 @@ const Sidebar = ({ currentCategory }) => {
             </Button>
           </Link>
 
-          <Button
-            type="primary"
-            className="mt-3"
-            icon={<RocketOutlined />}
-            block
-            onClick={randomOne}
-          >
-            Flashcard Shuffle
-          </Button>
+          <div className="my-3">
+            <Filter />
+          </div>
         </div>
       </Menu>
     </Sider>
